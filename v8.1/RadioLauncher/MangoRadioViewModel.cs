@@ -33,7 +33,6 @@ namespace RadioLauncher
             set
             {
                 _isPlaying = value;
-                SetPlayerStatus();
                 OnPropertyChanged();
             }
         }
@@ -115,18 +114,6 @@ namespace RadioLauncher
             }
         }
 
-        private void SetPlayerStatus()
-        {
-            //if (IsPlaying)
-            //{
-            //    BackgroundMediaPlayer.Current.Play();
-            //}
-            //else
-            //{
-            //    BackgroundMediaPlayer.Current.Pause();
-            //}
-        }
-
         private void PlayOrPause()
         {
             Debug.WriteLine("Play button pressed from App");
@@ -201,7 +188,7 @@ namespace RadioLauncher
             AddMediaPlayerEventHandlers();
             var backgroundtaskinitializationresult = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                var result = _serverInitialized.WaitOne(2000);
+                var result = _serverInitialized.WaitOne(5000);
                 //Send message to initiate playback
                 if (result)
                 {

@@ -16,6 +16,10 @@
     <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>5c02465d</NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/02ee3851-95a3-4982-8768-8a05c95103d9/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/App1</ApplicationInsightsResourceId>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,6 +86,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="AdMediator.config" />
+    <None Include="app.config" />
     <None Include="ApplicationInsights.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -119,6 +125,7 @@
     <Content Include="Assets\transport.pause.png" />
     <Content Include="Assets\transport.play.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -131,6 +138,35 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AdDuplex.Universal.Controls.WinPhone.XAML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AdDuplexWinPhone81.8.5.0.5\lib\portable-win81+wpa81\AdDuplex.Universal.Controls.WinPhone.XAML.winmd</HintPath>
+    </Reference>
+    <Reference Include="AdDuplex.Universal.WinPhone.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AdDuplexWinPhone81.8.5.0.5\lib\portable-win81+wpa81\AdDuplex.Universal.WinPhone.WinRT.winmd</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AdMediator.WindowsPhone81.AdDuplex">
+      <HintPath>..\packages\Microsoft.AdMediator.WindowsPhone81.AdDuplex.1.0.12\lib\wpa\Microsoft.AdMediator.WindowsPhone81.AdDuplex.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AdMediator.WindowsPhone81.MicrosoftAdvertising">
+      <HintPath>..\packages\Microsoft.AdMediator.WindowsPhone81.MicrosoftAdvertising.1.0.13\lib\wpa\Microsoft.AdMediator.WindowsPhone81.MicrosoftAdvertising.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AdMediator.WindowsPhone81.Smaato">
+      <HintPath>..\packages\Microsoft.AdMediator.WindowsPhone81.Smaato.1.0.6\lib\wpa\Microsoft.AdMediator.WindowsPhone81.Smaato.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.Common, Version=8.1.40505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.Xaml81.8.1.40505.0\lib\wpa81\Microsoft.Advertising.Mobile.Common.winmd</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.Display, Version=8.1.40505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.Xaml81.8.1.40505.0\lib\wpa81\Microsoft.Advertising.Mobile.Display.winmd</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=8.1.40505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.Xaml81.8.1.40505.0\lib\wpa81\Microsoft.Advertising.Mobile.UI.winmd</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.winmd</HintPath>
     </Reference>
@@ -140,12 +176,20 @@
     <Reference Include="Microsoft.ApplicationInsights.Extensibility.Windows">
       <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsPhone.0.12.0-build17386\lib\wpa81\Microsoft.ApplicationInsights.Extensibility.Windows.winmd</HintPath>
     </Reference>
+    <Reference Include="SOMAWP81">
+      <HintPath>..\packages\SOMAW81_Package.1.1.6\lib\wpa81\SOMAWP81.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BackgroundAgent\BackgroundAgent.csproj">
       <Project>{35C2186E-9004-4AA3-9501-AF7248801410}</Project>
       <Name>BackgroundAgent</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.AdMediator81, Version=1.0">
+      <Name>Microsoft.AdMediator81</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
@@ -160,7 +204,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

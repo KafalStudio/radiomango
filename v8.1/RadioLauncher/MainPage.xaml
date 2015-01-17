@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page xmlns:WindowsPhone81="using:Microsoft.AdMediator.WindowsPhone81"  
     x:Class="RadioLauncher.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,32 +9,49 @@
 
     <Grid Style="{StaticResource OuterGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" ></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-            
+
+        <Border Grid.Row="2" >
+        <TextBlock  Style="{StaticResource WatermarkStyle}"
+            Text="Not authorized by AAP. We are just AAP fans.">
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="-90" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        </Border>
         <Border Grid.Row="0" Style="{StaticResource BorderStyle1}">
-            
+
             <StackPanel>
                 <Image Source="Assets/AAP.png" Stretch="None"></Image>
-                <Image Source="Assets/Jhadoo.png" Margin="0,-40,0,0" Stretch="None"></Image>
+                <Image VerticalAlignment="Bottom" Source="Assets/Jhadoo.png" Margin="0,-40,0,0" Stretch="None"></Image>
             </StackPanel>
-            
+
         </Border>
         <Border Style="{StaticResource BorderStyle2}" Grid.Row="1">
-            
-        <Button
+               <Button
             Style="{Binding IsPlaying, Converter={StaticResource ButtonConverter}}"
             Command="{Binding PlayCommand}" />
         </Border>
-            <Border Grid.Row="2" Style="{StaticResource BorderStyle3}">
+        <Border Grid.Row="2" Style="{StaticResource BorderStyle3}" 
+                VerticalAlignment="Bottom">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" ></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*" ></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-            <Image Source="Assets/Mango170.png" Stretch="None"></Image>
+                <Image Source="Assets/Mango170.png" 
+                       Stretch="None" Grid.Row="0"></Image>
+
+                <Border Grid.Row="1" VerticalAlignment="Bottom">
+                <WindowsPhone81:AdMediatorControl 
+                    x:Name="AdMediator_7F35E6" 
+                    Height="Auto" 
+                    Id="AdMediator-Id-659E92B5-93A0-4779-896B-2D3070E7B3A2" 
+                    VerticalAlignment="Top" Width="Auto"/>
+                </Border>
             </Grid>
         </Border>
     </Grid>

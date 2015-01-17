@@ -50,22 +50,25 @@
             </Setter>-->
         </Style>
         <Style x:Key="BorderStyle2" TargetType="Border" >
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
+        
         <Style x:Key="BorderStyle3" TargetType="Border" >
-            <!--<Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="Assets/Jhadoo.png" Stretch="None"></ImageBrush>
-                </Setter.Value>
-            </Setter>-->
+            <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
         <Style x:Key="OuterGridStyle" TargetType="Grid" >
-            <Setter Property="Background" Value="White" />
+            <Setter Property="Background" Value="{StaticResource SaffronGradientBrush}" />
         </Style>
         <x:String x:Key="ApplicationName">Mango Radio</x:String>
         <Style x:Key="ApplicationNameStyle" TargetType="TextBlock" BasedOn="{StaticResource FlyoutPickerTitleTextBlockStyle}" >
             <Setter Property="Foreground" Value="{StaticResource SaffronGradientBrush}" />
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="WatermarkStyle" TargetType="TextBlock" BasedOn="{StaticResource FlyoutPickerTitleTextBlockStyle}" >
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Opacity" Value="0.25"></Setter>
         </Style>
     </Application.Resources>
 </Application>
